@@ -1,0 +1,49 @@
+name: backend-checks
+on: [push, pull_request]
+
+jobs:
+  local-mode:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: python -m ruff check .
+      - run: python -m pytest -q
+      - run: python scripts/evaluate.py --output reports/evaluation.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baseline-${{ matrix.python-version }}
+          path: reports/evaluation.json
+
+  postgres-migrations:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: knowledge
+          POSTGRES_USER: knowledge
+          POSTGRES_PASSWORD: ci-only-temporary-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U knowledge -d knowledge"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://knowledge:ci-only-temporary-password@localhost:5432/knowledge
+      AUTO_CREATE_SCHEMA: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: python -m alembic upgrade head
+      - run: python -m alembic check
+      - run: python -m alembic downgrade base
+      - run: python -m alembic upgrade head

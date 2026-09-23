@@ -1,0 +1,136 @@
+name: ai-knowledge-backend
+
+x-app-environment: &app-environment
+  APP_ENV: production
+  DATABASE_URL: postgresql+psycopg://knowledge:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/knowledge
+  REDIS_URL: redis://redis:6379/0
+  JWT_SECRET: ${JWT_SECRET:?Set a random JWT_SECRET in .env}
+  JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-120}
+  TASK_MODE: celery
+  RATE_LIMIT_BACKEND: redis
+  AUTO_CREATE_SCHEMA: "false"
+  STORAGE_DIR: /srv/app/data/uploads
+  EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-hash}
+  EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-256}
+  EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-3-small}
+  EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-https://api.openai.com/v1}
+  EMBEDDING_API_KEY: ${EMBEDDING_API_KEY:-}
+  LLM_PROVIDER: ${LLM_PROVIDER:-demo}
+  LLM_API_KEY: ${LLM_API_KEY:-}
+  LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+  LLM_MODEL: ${LLM_MODEL:-configure-your-model}
+  LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
+  LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-800}
+  LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0}
+  MAX_CONCURRENT_GENERATIONS: ${MAX_CONCURRENT_GENERATIONS:-4}
+  CHUNK_SIZE: ${CHUNK_SIZE:-600}
+  CHUNK_OVERLAP: ${CHUNK_OVERLAP:-100}
+  RETRIEVAL_TOP_K: ${RETRIEVAL_TOP_K:-5}
+  RETRIEVAL_MIN_SCORE: ${RETRIEVAL_MIN_SCORE:-0.08}
+  MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-10485760}
+  MAX_DOCUMENT_CHARS: ${MAX_DOCUMENT_CHARS:-1000000}
+  MAX_PDF_PAGES: ${MAX_PDF_PAGES:-300}
+  CHAT_REQUESTS_PER_MINUTE: ${CHAT_REQUESTS_PER_MINUTE:-20}
+  AUTH_REQUESTS_PER_MINUTE: ${AUTH_REQUESTS_PER_MINUTE:-20}
+  JOB_LEASE_SECONDS: ${JOB_LEASE_SECONDS:-900}
+  JOB_MAX_ATTEMPTS: ${JOB_MAX_ATTEMPTS:-3}
+
+x-app: &app
+  build: .
+  image: ai-knowledge-backend:local
+  environment: *app-environment
+  volumes:
+    - uploads:/srv/app/data
+  restart: unless-stopped
+  init: true
+  security_opt:
+    - no-new-privileges:true
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: knowledge
+      POSTGRES_DB: knowledge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge -d knowledge"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  migrate:
+    <<: *app
+    command: ["python", "-m", "alembic", "upgrade", "head"]
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 15s
+
+  worker:
+    <<: *app
+    command: ["celery", "-A", "app.tasks:celery_app", "worker", "--loglevel=INFO", "--concurrency=2", "--hostname=worker@%h"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A app.tasks:celery_app inspect ping --destination worker@$$HOSTNAME --timeout 4"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  beat:
+    <<: *app
+    command: ["celery", "-A", "app.tasks:celery_app", "beat", "--loglevel=INFO", "--schedule=/srv/app/data/celerybeat-schedule", "--pidfile=/srv/app/data/celerybeat.pid"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os,pathlib; p=int(pathlib.Path('/srv/app/data/celerybeat.pid').read_text()); os.kill(p,0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  postgres-data:
+  redis-data:
+  uploads:

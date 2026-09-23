@@ -1,0 +1,24 @@
+{"id":"dev-01","split":"dev","question":"星河文档服务使用哪个环境变量设置数据库连接？","source":"software-guide.md","page":1,"evidence":["DATABASE_URL"],"answerable":true}
+{"id":"dev-02","split":"dev","question":"星河文档服务的单个上传文件最大有多大？","source":"software-guide.md","page":1,"evidence":["10 MiB"],"answerable":true}
+{"id":"dev-03","split":"dev","question":"删除文档后什么时候停止参与检索？","source":"software-guide.md","page":1,"evidence":["立即停止参与检索"],"answerable":true}
+{"id":"dev-04","split":"dev","question":"差旅报销材料应在出差结束多少天内提交？","source":"expense-policy.txt","page":1,"evidence":["15 个自然日"],"answerable":true}
+{"id":"dev-05","split":"dev","question":"住宿费用每人每晚限额是多少？","source":"expense-policy.txt","page":1,"evidence":["450 元"],"answerable":true}
+{"id":"dev-06","split":"dev","question":"报销金额计算应该使用什么数值类型？","source":"expense-policy.txt","page":1,"evidence":["十进制定点数"],"answerable":true}
+{"id":"dev-07","split":"dev","question":"Python 后端课程第一周学习哪些内容？","source":"course-python.md","page":1,"evidence":["第一周学习函数、异常、类型注解和虚拟环境"],"answerable":true}
+{"id":"dev-08","split":"dev","question":"Python 课程第五周学习哪些后台任务技术？","source":"course-python.md","page":1,"evidence":["Redis、Celery 和任务重试"],"answerable":true}
+{"id":"dev-09","split":"dev","question":"Python 后端课程最终考核包括哪些内容？","source":"course-python.md","page":1,"evidence":["技术答辩和真实测试报告"],"answerable":true}
+{"id":"dev-10","split":"dev","question":"员工每年有多少天带薪年假？","source":null,"page":null,"evidence":[],"answerable":false}
+{"id":"dev-11","split":"dev","question":"星河文档服务的商业许可证价格是多少？","source":null,"page":null,"evidence":[],"answerable":false}
+{"id":"dev-12","split":"dev","question":"Python 课程的教师姓名和联系电话是什么？","source":null,"page":null,"evidence":[],"answerable":false}
+{"id":"test-01","split":"test","question":"改了 DATABASE_URL 后需要重启哪些进程？","source":"software-guide.md","page":1,"evidence":["重启 API 和后台 Worker"],"answerable":true}
+{"id":"test-02","split":"test","question":"扫描版 PDF 在上传前需要如何处理？","source":"software-guide.md","page":1,"evidence":["OCR 转为包含文字层的文件"],"answerable":true}
+{"id":"test-03","split":"test","question":"星河手册约定的数据库备份时间和保留天数是什么？","source":"software-guide.md","page":1,"evidence":["凌晨 02:00","最近 7 天"],"answerable":true}
+{"id":"test-04","split":"test","question":"一张报销单需要提交哪几项字段？","source":"expense-policy.txt","page":1,"evidence":["出差申请编号、发票日期、含税金额、商户名称和费用类别"],"answerable":true}
+{"id":"test-05","split":"test","question":"住宿费用超过限额后，应当如何处理？","source":"expense-policy.txt","page":1,"evidence":["部门负责人补充审批"],"answerable":true}
+{"id":"test-06","split":"test","question":"发票号码和金额相同的两份材料如何处理？","source":"expense-policy.txt","page":1,"evidence":["疑似重复","人工复核"],"answerable":true}
+{"id":"test-07","split":"test","question":"Python 课程第几周学习 SQLAlchemy 事务和数据库迁移？","source":"course-python.md","page":1,"evidence":["第四周学习 SQLAlchemy 事务及 Alembic"],"answerable":true}
+{"id":"test-08","split":"test","question":"CPU 密集型 PDF 解析应该放到哪里执行？","source":"course-python.md","page":1,"evidence":["交给 Worker"],"answerable":true}
+{"id":"test-09","split":"test","question":"后端课程第七周需要完成什么功能？","source":"course-python.md","page":1,"evidence":["第七周完成流式问答和来源引用"],"answerable":true}
+{"id":"test-10","split":"test","question":"出差乘坐飞机可以购买商务舱吗？","source":null,"page":null,"evidence":[],"answerable":false}
+{"id":"test-11","split":"test","question":"星河文档服务的生产环境 QPS 和可用率 SLA 是多少？","source":null,"page":null,"evidence":[],"answerable":false}
+{"id":"test-12","split":"test","question":"Python 课程毕业后的就业率是多少？","source":null,"page":null,"evidence":[],"answerable":false}

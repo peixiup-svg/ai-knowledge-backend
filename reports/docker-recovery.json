@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "Local Docker/PostgreSQL/Redis/Celery; one synthetic upload",
+  "queued_while_worker_stopped": true,
+  "processed_after_worker_restart": true,
+  "before": [
+    1,
+    1
+  ],
+  "after": [
+    1,
+    1
+  ],
+  "duplicate_delivery_passed": true
+}

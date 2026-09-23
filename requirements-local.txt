@@ -1,0 +1,7 @@
+# Optional CPU embedding service, isolated from the lightweight API environment.
+# The generation model is served by a verified llama.cpp Vulkan executable.
+torch>=2.6,<3
+sentence-transformers>=3.4,<6
+transformers>=4.48,<6
+fastapi>=0.115,<1
+uvicorn>=0.34,<1

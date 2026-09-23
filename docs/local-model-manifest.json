@@ -1,0 +1,114 @@
+[
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "1_Pooling/config.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 190,
+    "sha256": "aaa8861589f80c961a03cc86c7eeaef7605c1676b9ab55329d33a304738769c6"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "README.md",
+    "revision": "29ee8f619cff1eb2efae93ff802e01a877212d16",
+    "size": 28112,
+    "sha256": "f271bdf5e1acc00295c8806b2c9369168282f5a2a582e32e8e1f186dc92f7b55"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "config.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 776,
+    "sha256": "3853a7979202c348751b753e36f579c41d8da7d36af617d3d907e1fc9b441f2a"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "config_sentence_transformers.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 124,
+    "sha256": "940d5f50db195fa6e5e6a4f122c095f77880de259d74b14a65779ed48bdd7c56"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "configuration.json",
+    "revision": "0288171a534701d76a071d06bc2768c7ee7a7abd",
+    "size": 47,
+    "sha256": "da6024cdfaee6dd3c4bf75dac3bac16fdb1b900021f0df757d8ca0ef577efe34"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "model.safetensors",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 95827648,
+    "sha256": "354763b9b1357bc9c44f62c6be2276321081ed2567773608c0d0785b61d5a026"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "modules.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 349,
+    "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "sentence_bert_config.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 52,
+    "sha256": "84e39fda68ccbff05bfa723ae9c0e70e23e2ec373b76e0f8c6e71af72a693cbf"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "special_tokens_map.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 125,
+    "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "tokenizer.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 439125,
+    "sha256": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "tokenizer_config.json",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 367,
+    "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+  },
+  {
+    "repo": "AI-ModelScope/bge-small-zh-v1.5",
+    "file": "vocab.txt",
+    "revision": "b7b841ce366cce9454e10934fd8ad91dd4e5913d",
+    "size": 109540,
+    "sha256": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c"
+  },
+  {
+    "repo": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+    "file": "LICENSE",
+    "revision": "418fd9b3a75951d634221e8484e5ce15a6ff026c",
+    "size": 11343,
+    "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+  },
+  {
+    "repo": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+    "file": "README.md",
+    "revision": "1b96cffd3d84bf3872cf5c12a53731ab9e6c331f",
+    "size": 5633,
+    "sha256": "b813de546b5f0a1d8c49307d428582fd649be627d9b33a60ecf807a3381af05e"
+  },
+  {
+    "repo": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+    "file": "qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+    "revision": "a6df5b898bfd48f46cbc7ec856fba0c4b9d0a34c",
+    "size": 3993201344,
+    "sha256": "dfce12e3862a5283ccfb88221b48480e58745165de856439950d0f22590580db"
+  },
+  {
+    "repo": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+    "file": "qwen2.5-7b-instruct-q4_k_m-00002-of-00002.gguf",
+    "revision": "9532e0c95f30394d0bb1e3c9ca422dbadb4f0da9",
+    "size": 689872288,
+    "sha256": "539cf93f78e887edea1c04e2d7d8cdaca9d01dae9c9025bcb8accbe29df3d72a"
+  }
+]

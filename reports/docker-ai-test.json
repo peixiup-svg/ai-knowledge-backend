@@ -1,0 +1,670 @@
+{
+  "created_at_utc": "2026-09-23T15:23:09.462154+00:00",
+  "status": "passed",
+  "mode": "REAL_LOCAL_MODELS",
+  "split": "test",
+  "top_k": 3,
+  "results": [
+    {
+      "id": "test-01",
+      "split": "test",
+      "question": "改了 DATABASE_URL 后需要重启哪些进程？",
+      "expected_answerable": true,
+      "evidence_hit": false,
+      "evidence_rank": null,
+      "answer": "现有资料不足，无法确认。[1][2][3]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "a6dc9585-cb62-46f0-bcda-f909c818ff01",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "# Python 后端课程大纲（合成演示材料）\n\n这是虚构课程资料，用于项目演示，不代表真实学校的教学安排。\n\n## 第一阶段：Python 与 HTTP\n\n第一周学习函数、异常、类型注解和虚拟环境。第二周学习 HTTP 方法、状态码、请求头及 JSON，使用 FastAPI 创建参数验证接口。作业要求实现用户注册、密码哈希和登录。\n\n## 第二阶段：数据库\n\n第三周学习 PostgreSQL 表结构、外键和唯一约束。第四周学习 SQLAlchemy 事务及 Alembic 数据库迁移。课程要求用数据库约束保障一致性，不仅依靠应用层判断。\n\n## 第三阶段：后台任务\n\n第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。",
+          "score": 0.648944
+        },
+        {
+          "index": 2,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.641358
+        },
+        {
+          "index": 3,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.630215
+        }
+      ],
+      "reference_numbers": [
+        1,
+        2,
+        3
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": true,
+      "first_token_ms": 16930.83,
+      "total_ms": 17966.98,
+      "errors": [],
+      "completion": {
+        "message_id": "bcc98649-54fb-45c1-90fa-7b08d12a1730",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 831,
+          "completion_tokens": 15
+        }
+      }
+    },
+    {
+      "id": "test-02",
+      "split": "test",
+      "question": "扫描版 PDF 在上传前需要如何处理？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 2,
+      "answer": "在上传前，扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。[2]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.646145
+        },
+        {
+          "index": 2,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.552562
+        },
+        {
+          "index": 3,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.492669
+        }
+      ],
+      "reference_numbers": [
+        2
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1042.22,
+      "total_ms": 2647.19,
+      "errors": [],
+      "completion": {
+        "message_id": "eb402b5b-c510-4733-a6af-54c5085c8150",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 824,
+          "completion_tokens": 28
+        }
+      }
+    },
+    {
+      "id": "test-03",
+      "split": "test",
+      "question": "星河手册约定的数据库备份时间和保留天数是什么？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 3,
+      "answer": "星河手册约定的数据库备份时间为每天凌晨 02:00，并保留最近 7 天的备份文件。[3]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.572582
+        },
+        {
+          "index": 2,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.540135
+        },
+        {
+          "index": 3,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.502166
+        }
+      ],
+      "reference_numbers": [
+        3
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1047.59,
+      "total_ms": 2835.67,
+      "errors": [],
+      "completion": {
+        "message_id": "c20d5ec3-15cc-40b2-b28c-aad16c63644c",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 889,
+          "completion_tokens": 31
+        }
+      }
+    },
+    {
+      "id": "test-04",
+      "split": "test",
+      "question": "一张报销单需要提交哪几项字段？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 1,
+      "answer": "一张报销单需要提交的字段包括：出差申请编号、发票日期、含税金额、商户名称和费用类别。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.565171
+        },
+        {
+          "index": 2,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.462569
+        },
+        {
+          "index": 3,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.394922
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1058.86,
+      "total_ms": 2765.9,
+      "errors": [],
+      "completion": {
+        "message_id": "a66151e1-e5aa-47db-a8a4-47fa1d1018c3",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 880,
+          "completion_tokens": 30
+        }
+      }
+    },
+    {
+      "id": "test-05",
+      "split": "test",
+      "question": "住宿费用超过限额后，应当如何处理？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 1,
+      "answer": "超过住宿费用限额后，应当由部门负责人进行补充审批。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.603154
+        },
+        {
+          "index": 2,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.363652
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 692.9,
+      "total_ms": 1715.99,
+      "errors": [],
+      "completion": {
+        "message_id": "fed11733-c201-4c29-b75a-1245ec72a16f",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 619,
+          "completion_tokens": 18
+        }
+      }
+    },
+    {
+      "id": "test-06",
+      "split": "test",
+      "question": "发票号码和金额相同的两份材料如何处理？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 1,
+      "answer": "对于发票号码和金额相同的两份材料，应标记为疑似重复，并交由人工复核。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.579712
+        },
+        {
+          "index": 2,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.457615
+        },
+        {
+          "index": 3,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.391277
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1043.85,
+      "total_ms": 2521.49,
+      "errors": [],
+      "completion": {
+        "message_id": "82a4fa20-63af-47aa-a2fb-434808cb0368",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 883,
+          "completion_tokens": 26
+        }
+      }
+    },
+    {
+      "id": "test-07",
+      "split": "test",
+      "question": "Python 课程第几周学习 SQLAlchemy 事务和数据库迁移？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 1,
+      "answer": "Python 课程在第四周学习 SQLAlchemy 事务及 Alembic 数据库迁移。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "a6dc9585-cb62-46f0-bcda-f909c818ff01",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "# Python 后端课程大纲（合成演示材料）\n\n这是虚构课程资料，用于项目演示，不代表真实学校的教学安排。\n\n## 第一阶段：Python 与 HTTP\n\n第一周学习函数、异常、类型注解和虚拟环境。第二周学习 HTTP 方法、状态码、请求头及 JSON，使用 FastAPI 创建参数验证接口。作业要求实现用户注册、密码哈希和登录。\n\n## 第二阶段：数据库\n\n第三周学习 PostgreSQL 表结构、外键和唯一约束。第四周学习 SQLAlchemy 事务及 Alembic 数据库迁移。课程要求用数据库约束保障一致性，不仅依靠应用层判断。\n\n## 第三阶段：后台任务\n\n第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。",
+          "score": 0.733382
+        },
+        {
+          "index": 2,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.662012
+        },
+        {
+          "index": 3,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.570898
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1044.12,
+      "total_ms": 2290.87,
+      "errors": [],
+      "completion": {
+        "message_id": "83a4c0a3-1a0a-4c6d-933e-8fc5f7acdd9c",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 824,
+          "completion_tokens": 22
+        }
+      }
+    },
+    {
+      "id": "test-08",
+      "split": "test",
+      "question": "CPU 密集型 PDF 解析应该放到哪里执行？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 1,
+      "answer": "CPU 密集型 PDF 解析应交给 Worker 执行，不应阻塞 Web 服务事件循环。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.623137
+        },
+        {
+          "index": 2,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.560215
+        },
+        {
+          "index": 3,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.550391
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 958.73,
+      "total_ms": 2512.62,
+      "errors": [],
+      "completion": {
+        "message_id": "99be8aab-baa9-4716-8176-796fb7217f1c",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 823,
+          "completion_tokens": 27
+        }
+      }
+    },
+    {
+      "id": "test-09",
+      "split": "test",
+      "question": "后端课程第七周需要完成什么功能？",
+      "expected_answerable": true,
+      "evidence_hit": true,
+      "evidence_rank": 2,
+      "answer": "后端课程第七周需要完成流式问答和来源引用。[2]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "a6dc9585-cb62-46f0-bcda-f909c818ff01",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "# Python 后端课程大纲（合成演示材料）\n\n这是虚构课程资料，用于项目演示，不代表真实学校的教学安排。\n\n## 第一阶段：Python 与 HTTP\n\n第一周学习函数、异常、类型注解和虚拟环境。第二周学习 HTTP 方法、状态码、请求头及 JSON，使用 FastAPI 创建参数验证接口。作业要求实现用户注册、密码哈希和登录。\n\n## 第二阶段：数据库\n\n第三周学习 PostgreSQL 表结构、外键和唯一约束。第四周学习 SQLAlchemy 事务及 Alembic 数据库迁移。课程要求用数据库约束保障一致性，不仅依靠应用层判断。\n\n## 第三阶段：后台任务\n\n第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。",
+          "score": 0.613932
+        },
+        {
+          "index": 2,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.594997
+        },
+        {
+          "index": 3,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.503547
+        }
+      ],
+      "reference_numbers": [
+        2
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": false,
+      "first_token_ms": 1030.86,
+      "total_ms": 2066.74,
+      "errors": [],
+      "completion": {
+        "message_id": "b1a47163-6006-42c5-887a-ee3d5a712ac4",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 826,
+          "completion_tokens": 18
+        }
+      }
+    },
+    {
+      "id": "test-10",
+      "split": "test",
+      "question": "出差乘坐飞机可以购买商务舱吗？",
+      "expected_answerable": false,
+      "evidence_hit": false,
+      "evidence_rank": null,
+      "answer": "现有资料不足，无法确认。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.458607
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": true,
+      "first_token_ms": 549.0,
+      "total_ms": 1145.46,
+      "errors": [],
+      "completion": {
+        "message_id": "5384fb73-d765-46c4-95ba-82f0b4542d18",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 484,
+          "completion_tokens": 11
+        }
+      }
+    },
+    {
+      "id": "test-11",
+      "split": "test",
+      "question": "星河文档服务的生产环境 QPS 和可用率 SLA 是多少？",
+      "expected_answerable": false,
+      "evidence_hit": false,
+      "evidence_rank": null,
+      "answer": "现有资料不足，无法确认。[1]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "59a8cf2e-49b2-46e2-8fd9-279b73650b4f",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "# 星河文档服务操作手册（合成演示材料）\n\n本文为本项目自编的虚构软件说明，用于检索和问答演示，不代表任何真实公司的制度。\n\n## 数据库连接\n\n星河文档服务通过 DATABASE_URL 环境变量设置数据库连接地址。开发环境使用 SQLite，团队部署使用 PostgreSQL。修改连接地址后需要重启 API 和后台 Worker。数据库密码不应写进源代码或提交到 Git。\n\n## 上传文件\n\n文档上传支持 UTF-8 编码的 TXT、Markdown 和带文字层的 PDF。单个文件最大为 10 MiB。扫描版 PDF 需要预先通过 OCR 转为包含文字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。",
+          "score": 0.647832
+        },
+        {
+          "index": 2,
+          "chunk_id": "1e96c79c-0705-4940-a575-7108b3f48d3a",
+          "document_id": "454f7df9-572d-4204-b54b-d2368450675e",
+          "filename": "expense-policy.txt",
+          "page_number": 1,
+          "content": "星河工作室差旅报销规定（合成演示材料）\n\n本材料为虚构政策，仅供检索演示，不构成真实财务建议。\n\n员工应在出差结束后 15 个自然日内提交报销材料。单次报销需要提供出差申请编号、发票日期、含税金额、商户名称和费用类别。\n\n住宿费用限额为每人每晚 450 元。超过限额的材料需要部门负责人补充审批；系统不能仅根据金额自动判定违规。\n\n同一发票号码与相同金额的材料应标记为疑似重复，交由人工复核。票面金额缺失、明细合计与总额不一致的材料也进入人工复核。\n\n金额计算应使用十进制定点数。模型可以辅助提取字段，审核人员负责最终确认。",
+          "score": 0.551662
+        },
+        {
+          "index": 3,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.470148
+        }
+      ],
+      "reference_numbers": [
+        1
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": true,
+      "first_token_ms": 938.17,
+      "total_ms": 1551.4,
+      "errors": [],
+      "completion": {
+        "message_id": "d36e9f77-d8aa-4e05-a00f-a1aaf22ed8b3",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 823,
+          "completion_tokens": 11
+        }
+      }
+    },
+    {
+      "id": "test-12",
+      "split": "test",
+      "question": "Python 课程毕业后的就业率是多少？",
+      "expected_answerable": false,
+      "evidence_hit": false,
+      "evidence_rank": null,
+      "answer": "现有资料不足，无法确认。[1][2][3]",
+      "citations": [
+        {
+          "index": 1,
+          "chunk_id": "a6dc9585-cb62-46f0-bcda-f909c818ff01",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "# Python 后端课程大纲（合成演示材料）\n\n这是虚构课程资料，用于项目演示，不代表真实学校的教学安排。\n\n## 第一阶段：Python 与 HTTP\n\n第一周学习函数、异常、类型注解和虚拟环境。第二周学习 HTTP 方法、状态码、请求头及 JSON，使用 FastAPI 创建参数验证接口。作业要求实现用户注册、密码哈希和登录。\n\n## 第二阶段：数据库\n\n第三周学习 PostgreSQL 表结构、外键和唯一约束。第四周学习 SQLAlchemy 事务及 Alembic 数据库迁移。课程要求用数据库约束保障一致性，不仅依靠应用层判断。\n\n## 第三阶段：后台任务\n\n第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。",
+          "score": 0.611768
+        },
+        {
+          "index": 2,
+          "chunk_id": "49bc9951-37d2-457e-b1b6-97b18e94c6b4",
+          "document_id": "424b48b1-7c9e-4ed0-8840-867f3ba05e0a",
+          "filename": "course-python.md",
+          "page_number": 1,
+          "content": "第五周学习 Redis、Celery 和任务重试。重复任务执行必须具有幂等性，不能重复生成文档分块。CPU 密集型 PDF 解析应交给 Worker，不应阻塞 Web 服务事件循环。\n\n## 第四阶段：AI 应用\n\n第六周学习文本切分、向量检索和 RAG。第七周完成流式问答和来源引用，第八周完成评测与部署。最终考核包括功能演示、失败场景演示、技术答辩和真实测试报告。",
+          "score": 0.517566
+        },
+        {
+          "index": 3,
+          "chunk_id": "1bb7cdeb-3cf0-40a8-911e-070181eb4f73",
+          "document_id": "52b26035-732c-4575-a997-b17023dd6ef3",
+          "filename": "software-guide.md",
+          "page_number": 1,
+          "content": "字层的文件。本版本不提供 OCR 服务。\n\n## 后台任务\n\n上传接口返回文档 ID 和任务 ID。用户通过任务 ID 查询处理进度，文档完成解析和索引后才能参与问答。临时网络故障可以重试，损坏的 PDF 需要修复后重新提交。\n\n## 数据恢复\n\n团队部署每天凌晨 02:00 执行数据库备份，并保留最近 7 天的备份文件。恢复演练必须同时检查数据库元数据和原始文件。这是虚构产品的操作约定；本示例仓库没有实现自动备份任务。\n\n## 权限\n\n每个用户只能访问自己创建的知识库。删除文档后，该文档立即停止参与检索。后台文件清理完成时间不影响权限判断和检索可见性。",
+          "score": 0.447971
+        }
+      ],
+      "reference_numbers": [
+        1,
+        2,
+        3
+      ],
+      "references_in_range": true,
+      "refusal_heuristic": true,
+      "first_token_ms": 1034.25,
+      "total_ms": 1869.66,
+      "errors": [],
+      "completion": {
+        "message_id": "3c8a72fb-d268-4eda-9fbc-321365f70e0e",
+        "status": "completed",
+        "usage": {
+          "prompt_tokens": 825,
+          "completion_tokens": 15
+        }
+      }
+    }
+  ],
+  "limits": [
+    "24 public synthetic cases; not an independent blind benchmark",
+    "Refusal and citation checks are syntactic heuristics, not human-scored answer accuracy",
+    "Timing is end-to-end HTTP at concurrency 1 on this machine; no production load claim",
+    "Local models have no API billing; electricity and hardware costs are not estimated"
+  ],
+  "health": {
+    "status": "ok",
+    "mode": "production",
+    "task_mode": "celery",
+    "llm_provider": "openai",
+    "embedding_provider": "openai"
+  },
+  "cross_user_isolation_passed": true,
+  "duplicate_upload_passed": true,
+  "usage": {
+    "calls": 12,
+    "successful_calls": 12,
+    "failed_calls": 0,
+    "prompt_tokens": 9531,
+    "completion_tokens": 252,
+    "usage_unavailable_calls": 0
+  },
+  "deletion_exclusion_passed": true,
+  "metrics": {
+    "questions": 12,
+    "answerable": 9,
+    "unanswerable": 3,
+    "evidence_hit_at_k": 0.8888888888888888,
+    "heuristic_unanswerable_refusal_rate": 1.0,
+    "answerable_with_in_range_reference_rate": 1.0,
+    "median_first_token_ms": 1038.2350000000001,
+    "median_total_ms": 2401.745,
+    "completed": 12,
+    "human_answer_accuracy": null
+  }
+}

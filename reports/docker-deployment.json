@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-23",
+  "status": "passed",
+  "services": [
+    {
+      "Service": "api",
+      "State": "running",
+      "Health": "healthy",
+      "ExitCode": 0,
+      "Image": "ai-knowledge-backend:local"
+    },
+    {
+      "Service": "beat",
+      "State": "running",
+      "Health": "healthy",
+      "ExitCode": 0,
+      "Image": "ai-knowledge-backend:local"
+    },
+    {
+      "Service": "migrate",
+      "State": "exited",
+      "Health": "",
+      "ExitCode": 0,
+      "Image": "ai-knowledge-backend:local"
+    },
+    {
+      "Service": "postgres",
+      "State": "running",
+      "Health": "healthy",
+      "ExitCode": 0,
+      "Image": "pgvector/pgvector:pg16"
+    },
+    {
+      "Service": "redis",
+      "State": "running",
+      "Health": "healthy",
+      "ExitCode": 0,
+      "Image": "redis:7-alpine"
+    },
+    {
+      "Service": "worker",
+      "State": "running",
+      "Health": "healthy",
+      "ExitCode": 0,
+      "Image": "ai-knowledge-backend:local"
+    }
+  ],
+  "alembic_check": "No new upgrade operations detected.",
+  "docker_server": "29.8.0",
+  "live_report": "docker-ai-test.json",
+  "recovery_report": "docker-recovery.json"
+}
