@@ -1,6 +1,6 @@
 # 企业知识库与 AI 问答后端
 
-面向 Python 后端校招作品集的完整个人项目：用户上传文档，后台解析并建立索引，随后基于自己的知识库检索、流式问答并查看原文引用。项目重点是接口、数据库约束、权限隔离、异步任务、失败恢复和可重复评测。
+基于 Python 的知识库与 AI 问答后端：用户上传文档，后台解析并建立索引，随后基于自己的知识库检索、流式问答并查看原文引用。项目重点是接口、数据库约束、权限隔离、异步任务、失败恢复和可重复评测。
 
 **第一次使用请打开 [START_HERE.md](START_HERE.md)**：按步骤在 VS Code 选择解释器、F5 启动、运行 HTTP 演示，并沿关键函数设置断点。项目提供后端接口和 Swagger，当前没有独立聊天网页。
 
@@ -90,12 +90,12 @@ migrations/      # Alembic 版本迁移
 tests/           # 接口、任务、检索、模型协议的回归测试
 scripts/         # Windows 安装、HTTP 冒烟测试、离线评测
 examples/        # 合成文档与评测题目
-docs/            # 设计说明、学习路线、部署和面试材料
+docs/            # 设计说明、学习路线和部署指南
 .vscode/         # F5、测试与格式检查配置
 compose.yaml     # PostgreSQL、Redis、API、worker、beat、迁移
 ```
 
-深入阅读：[架构与设计](docs/architecture.md)、[按步骤学习与修改](docs/learning-guide.md)、[部署与配置](docs/operations.md)、[面试与简历](docs/interview.md)。
+深入阅读：[架构与设计](docs/architecture.md)、[按步骤学习与修改](docs/learning-guide.md)、[部署与配置](docs/operations.md)。
 
 ## 4. 后端能力与边界
 
@@ -121,12 +121,10 @@ compose.yaml     # PostgreSQL、Redis、API、worker、beat、迁移
 .\.venv\Scripts\python.exe scripts/evaluate.py --output reports/evaluation.json
 ```
 
-测试与离线评测使用隔离数据，不需要 API 运行，也不需要真实密钥。评测是工程基线验证，小规模合成题集不能证明真实业务效果。测试通过数量以实际命令输出为准，评测指标以生成的 JSON 为准。不要把 hash 模式结果写成真实语义模型效果，也不要把本地耗时写成线上 SLA。
+测试与离线评测使用隔离数据，不需要 API 运行，也不需要真实密钥。评测是工程基线验证，小规模合成题集不能证明真实业务效果。测试通过数量以实际命令输出为准，评测指标以生成的 JSON 为准。hash 模式衡量词汇检索基线，本地耗时不代表线上 SLA。
 
 GitHub Actions 提供 Python 版本检查和 PostgreSQL 迁移验证工作流；Compose 全链路按部署文档手动验收。只有仓库实际运行成功的 CI 记录才是验证证据。
 
-## 6. 下一步：理解真实模型并形成个人成果
+## 6. 本地模型配置
 
 先把上述离线流程跑通，再按照 [本地模型指南](docs/local-ai.md) 和 [Docker 运行指南](docs/docker-local-ai.md) 复现真实模型模式。替换服务时需要兼容 `/embeddings` 和流式 `/chat/completions` 协议；并非所有自称兼容的接口都支持相同参数。修改向量模型、端点或维度后必须重新入库，维度变化还涉及 PostgreSQL 表结构迁移。
-
-建议你自己补充一套目标领域资料与人工标注题目，保留调试集和测试集，记录一次有证据的优化，再录制“正常流程 + 失败恢复 + 权限隔离”的演示视频。这些亲自完成、能够解释的改动，才适合写进简历。

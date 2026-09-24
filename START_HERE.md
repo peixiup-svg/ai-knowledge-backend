@@ -49,4 +49,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1
 .\.venv\Scripts\python.exe scripts/evaluate.py --output reports/evaluation.json
 ```
 
-这些检查使用隔离数据，不要求 API 运行。先理解实际输出，再阅读 [架构说明](docs/architecture.md)、[八周学习路线](docs/learning-guide.md)、[真实模型与 Docker 配置](docs/operations.md) 和 [面试准备](docs/interview.md)。真实模型未使用凭证联调，当前交付机器也未运行 Docker；已有模拟协议测试和配置文件不能替代这两项验证。
+这些检查使用隔离数据，不要求 API 运行。先理解实际输出，再阅读 [架构说明](docs/architecture.md)、[八周学习路线](docs/learning-guide.md)、[真实模型与 Docker 配置](docs/operations.md)。本地真实模型与 Docker 联调结果见 [验收记录](VERIFICATION.md)，复现步骤见 [Docker 本地模型指南](docs/docker-local-ai.md)。
